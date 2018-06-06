@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180606200856) do
+ActiveRecord::Schema.define(version: 20180606212048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180606200856) do
     t.string "short_url", null: false
     t.string "long_url", null: false
     t.integer "user_id", null: false
+    t.datetime "created_at", default: "2018-06-06 21:33:23", null: false
+    t.datetime "updated_at", default: "2018-06-06 21:33:23", null: false
     t.index ["long_url"], name: "index_shortened_urls_on_long_url"
     t.index ["short_url"], name: "index_shortened_urls_on_short_url"
   end
@@ -26,12 +28,16 @@ ActiveRecord::Schema.define(version: 20180606200856) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.datetime "created_at", default: "2018-06-06 21:33:23", null: false
+    t.datetime "updated_at", default: "2018-06-06 21:33:23", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "visits", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "shortened_url_id", null: false
+    t.datetime "created_at", default: "2018-06-06 21:33:23", null: false
+    t.datetime "updated_at", default: "2018-06-06 21:33:23", null: false
     t.index ["shortened_url_id"], name: "index_visits_on_shortened_url_id"
     t.index ["user_id"], name: "index_visits_on_user_id"
   end

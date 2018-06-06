@@ -39,19 +39,19 @@ class ShortenedUrl < ApplicationRecord
 
   def num_clicks
     self.visitors.length
-
   end
 
   def num_uniques
     # self.visitors.uniq.length
-    data = ShortenedUrl.connection.execute(<<-SQL, self.id)
+    data = ShortenedUrl.connection.execute(<<-SQL)
       SELECT
-        COUNT(user_id)
+        COUNT(DISTINCT user_id)
       FROM
         visits
       WHERE
-        visits.shortened_url_id = ?
+        visits.shortened_url_id = #{self.id}
     SQL
+
   end
 
   def num_recent_uniques
