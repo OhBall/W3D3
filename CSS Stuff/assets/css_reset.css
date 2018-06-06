@@ -1,0 +1,26 @@
+html, body, header, aside, section, footer, h1, h2, h3, h4, a, p, li, ul, ol, form, label, article, div, figure{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  
+  font-style: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font: inherit;
+  
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1.5;
+}
+
+ol, ul{
+  list-style: none;
+}
+
+img{
+  width: 100%;
+}
