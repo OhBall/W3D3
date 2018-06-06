@@ -42,19 +42,23 @@ class ShortenedUrl < ApplicationRecord
   end
 
   def num_uniques
-    # self.visitors.uniq.length
-    data = ShortenedUrl.connection.execute(<<-SQL)
-      SELECT
-        COUNT(DISTINCT user_id)
-      FROM
-        visits
-      WHERE
-        visits.shortened_url_id = #{self.id}
-    SQL
+    self.visitors.uniq.length
+    # data = ShortenedUrl.connection.execute(<<-SQL)
+    #   SELECT
+    #     COUNT(DISTINCT user_id)
+    #   FROM
+    #     visits
+    #   WHERE
+    #     visits.shortened_url_id = #{self.id}
+    # SQL
 
   end
 
   def num_recent_uniques
-
+    data = ShortenedUrl.connection.execute(<<-SQL, self.id)
+      SELECT COUNT(DISTINCT user_id)
+      FROM visits
+      WHERE visits.shortened_url_id = ? AND
+    SQL
   end
 end

@@ -24,6 +24,4 @@ class Visit < ApplicationRecord
     primary_key: :id,
     class_name: :ShortenedUrl
 
-  
-
 end
